@@ -1,7 +1,7 @@
 public class Square {
     private String squareValue;
     private boolean bombExist = false; //default as false
-    private int numOfBombs = 0; //default 0. To keep track of how many bombs are there within the 2D array.
+    private boolean peopleAround = false;//default as false
 
     public Square(boolean bombValue){
         this.squareValue = "-";
@@ -12,15 +12,25 @@ public class Square {
         this.bombExist=value;
     }
 
+    public boolean getSquareBomb(){
+        return bombExist;
+    }
+
+    public void setPeopleAround(boolean value){
+        this.peopleAround = value;
+    }
+
     public String toString() {
-		String name = "";
-		// for(int i=0; i<numOfPlayer; i++) {
-		// 	name += playersInArray.get(i).toString();
-		// }
-		if(bombExist==false) { // Only print delta with non 0 value
-		return  String.format("%2s %2s", name,squareValue) ;
-		} else {
-			return  String.format("%1s %2s ", name, "B") ;
+
+        if(peopleAround == true && bombExist==false){
+            squareValue = "P";
+            return String.format("%1s %2s","",squareValue);
+        }
+		if(bombExist==false && peopleAround==false) {
+            return String.format("%1s %2s","",squareValue);   
+		}else{
+            squareValue = "B";
+            return String.format("%1s %2s","",squareValue);
 		}
 	}
 }

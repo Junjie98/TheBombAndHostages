@@ -2,8 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+
+import handler.Pair;
 
 public class Read {
     private int valueX;
@@ -16,15 +17,13 @@ public class Read {
     public Read(String fileLocation){
         this.location = fileLocation;
     }
-    public ArrayList <Pair<Integer,Integer>> readCordinate(){
+    public ArrayList <Pair<Integer,Integer>> readCoordinate(){
         BufferedReader readInTxt;
         System.out.println("Retrieving intel....");
 
         try {
                      String cordsLine;
                      readInTxt = new BufferedReader(new FileReader(this.location));
-            
-                     
                      //Capture all class data
                      while (true){
                         cordsLine = readInTxt.readLine();
@@ -40,15 +39,7 @@ public class Read {
                         valueX = Integer.parseInt(coordX);
                         valueY = Integer.parseInt(coordY);
                         coordsPairList.add(new Pair<>(valueX, valueY)); //store the coordiantes into a pair arraylist and return.
-                       // System.out.println(coordX +" "+ coordY);
 
-                   
-            //             String[] split_line_teacher = line.split(",");
-            //        //     String teacherName = split_line_teacher[0];
-            //        //     String teacherSkills = split_line_teacher[1];
-            // //          System.out.println("Name: "+teacherName+ ", Skills: " + teacherSkills);
-            //             Teacher classPTT = createTeacher(split_line_teacher);
-            //             teac.add(classPTT);
                      }
                      readInTxt.close();
                   } catch (IOException e) {
@@ -57,7 +48,6 @@ public class Read {
             
                   } finally {
                       System.err.println("Data has been successfully loaded!");
-                     
                   }
         return coordsPairList;
     }
